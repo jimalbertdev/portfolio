@@ -9,6 +9,8 @@ export function pick<T>(value: Localized<T>, language: Language): T {
   return value[language]
 }
 
+const baseUrl = import.meta.env.BASE_URL
+
 export const site = {
   name: 'Alberto Jiménez',
   initials: 'AJ',
@@ -18,7 +20,7 @@ export const site = {
   whatsapp: 'https://wa.me/584249008410',
   linkedin: 'https://www.linkedin.com/in/jimalbertdev',
   github: 'https://github.com/jimalbertdev',
-  cv: '/cv/Alberto-Jimenez-Fullstack-Senior.pdf',
+  cv: `${baseUrl}cv/Alberto-Jimenez-Fullstack-Senior.pdf`,
   domain: 'jimalbertdev.github.io/portfolio',
 }
 

@@ -22,6 +22,9 @@ export function CaseCard({ study, index }: { study: CaseStudy; index: number }) 
 
       <div className="relative mt-10 flex-1">
         <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+          {study.status ? (
+            <span className="text-accent-300">{pick(study.status, language)} · </span>
+          ) : null}
           {pick(study.company, language)}
         </p>
         <h3 className="mt-3 text-xl font-semibold leading-snug text-white transition group-hover:text-accent-300">

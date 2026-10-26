@@ -7,6 +7,7 @@ import { ArrowUpRight, Menu, X } from './Icons'
 const sectionLinks = [
   { id: 'servicios', label: nav.services },
   { id: 'casos', label: nav.cases },
+  { id: 'lab', label: nav.lab },
   { id: 'sobre-mi', label: nav.about },
   { id: 'contacto', label: nav.contact },
 ]

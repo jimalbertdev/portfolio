@@ -261,44 +261,66 @@ export function Home() {
               />
             </Reveal>
 
-            <div className="mt-12 grid gap-4 lg:grid-cols-3">
-              {labProjects.map((project) => (
-                <Reveal key={pick(project.name, language)} className="h-full">
-                  <article className="card group h-full p-6 transition duration-300 hover:border-amber-300/25 hover:bg-white/[0.05]">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="inline-flex items-center gap-2 rounded-full border border-amber-300/20 bg-amber-300/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-amber-200">
-                        <span className="h-1.5 w-1.5 rounded-full bg-amber-300" />
-                        {pick(project.status, language)}
-                      </span>
-                      <Sparkles className="h-5 w-5 text-amber-200/60" />
-                    </div>
+            <div className="mt-12 grid gap-4 md:grid-cols-2">
+              {labProjects.map((project) => {
+                const isProduction = project.statusTone === 'production'
 
-                    <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
-                      {pick(project.highlight, language)}
-                    </p>
-                    <h3 className="mt-3 text-lg font-semibold leading-snug text-white transition group-hover:text-accent-300">
-                      {pick(project.name, language)}
-                    </h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-400">
-                      {pick(project.description, language)}
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {project.stack.map((item) => (
-                        <span key={item} className="chip">
-                          {item}
+                return (
+                  <Reveal key={pick(project.name, language)} className="h-full">
+                    <article
+                      className={`card group h-full p-6 transition duration-300 hover:bg-white/[0.05] ${
+                        isProduction ? 'hover:border-accent/25' : 'hover:border-amber-300/25'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <span
+                          className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] ${
+                            isProduction
+                              ? 'border-accent/20 bg-accent/5 text-accent-300'
+                              : 'border-amber-300/20 bg-amber-300/5 text-amber-200'
+                          }`}
+                        >
+                          <span
+                            className={`h-1.5 w-1.5 rounded-full ${
+                              isProduction ? 'bg-accent' : 'bg-amber-300'
+                            }`}
+                          />
+                          {pick(project.status, language)}
                         </span>
-                      ))}
-                    </div>
+                        <Sparkles
+                          className={`h-5 w-5 ${
+                            isProduction ? 'text-accent-300/60' : 'text-amber-200/60'
+                          }`}
+                        />
+                      </div>
 
-                    <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.12em] text-slate-600">
-                      {pick(project.tags, language).map((tag) => (
-                        <span key={tag}>#{tag}</span>
-                      ))}
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
+                      <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
+                        {pick(project.highlight, language)}
+                      </p>
+                      <h3 className="mt-3 text-lg font-semibold leading-snug text-white transition group-hover:text-accent-300">
+                        {pick(project.name, language)}
+                      </h3>
+                      <p className="mt-3 text-sm leading-6 text-slate-400">
+                        {pick(project.description, language)}
+                      </p>
+
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {project.stack.map((item) => (
+                          <span key={item} className="chip">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="mt-4 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[10px] uppercase tracking-[0.12em] text-slate-500">
+                        {pick(project.tags, language).map((tag) => (
+                          <span key={tag}>#{tag}</span>
+                        ))}
+                      </div>
+                    </article>
+                  </Reveal>
+                )
+              })}
             </div>
           </div>
         </section>

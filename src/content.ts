@@ -25,6 +25,7 @@ export const site = {
 export const nav = {
   services: { es: 'Servicios', en: 'Services' },
   cases: { es: 'Casos', en: 'Work' },
+  lab: { es: 'Lab', en: 'Lab' },
   about: { es: 'Sobre mí', en: 'About' },
   contact: { es: 'Contacto', en: 'Contact' },
   cta: { es: 'Hablemos', en: "Let's talk" },
@@ -96,10 +97,10 @@ export const homeSections = {
   },
   lab: {
     eyebrow: { es: 'Laboratorio', en: 'Lab' },
-    title: { es: 'Proyectos en desarrollo', en: 'Projects in progress' },
+    title: { es: 'Proyectos propios', en: 'Own projects' },
     description: {
-      es: 'Productos propios y prototipos donde estoy explorando IA, datos y arquitecturas nuevas. Sin promesas de producción: código, decisiones y aprendizaje.',
-      en: 'Personal products and prototypes where I am exploring AI, data and new architectures. No production promises: code, decisions and learning.',
+      es: 'Productos, módulos y prototipos que estoy construyendo: algunos ya están en producción y otros siguen en desarrollo.',
+      en: 'Products, modules and prototypes I am building: some are already in production, others are still in development.',
     },
   },
   process: {
@@ -229,42 +230,44 @@ export type CaseStudy = {
   role: Localized<string>
   tags: Localized<string[]>
   highlight: Localized<string>
+  status?: Localized<string>
+  link?: string
 }
 
 export const cases: CaseStudy[] = [
   {
     slug: 'sigaf-erp',
     title: {
-      es: 'ERP administrativo-financiero para el sector público',
-      en: 'Administrative and financial ERP for the public sector',
+      es: 'SIGAF — ERP administrativo-financiero open source',
+      en: 'SIGAF — open-source administrative and financial ERP',
     },
     company: {
-      es: 'Cliente institucional · Venezuela',
-      en: 'Institutional client · Venezuela',
+      es: 'Venezuela',
+      en: 'Venezuela',
     },
     period: { es: '2026 — Actualidad', en: '2026 — Present' },
     summary: {
-      es: 'Plataforma modular para centralizar presupuesto, compras, tesorería, contabilidad, inventario, nómina y recursos humanos en una sola arquitectura.',
-      en: 'Modular platform centralizing budget, procurement, treasury, accounting, inventory, payroll and HR in a single architecture.',
+      es: 'Software libre para centralizar presupuesto, compras, tesorería, contabilidad, inventario, nómina y recursos humanos en una sola arquitectura reutilizable.',
+      en: 'Free software centralizing budget, procurement, treasury, accounting, inventory, payroll and HR in a single reusable architecture.',
     },
     challenge: {
-      es: 'Los procesos administrativos y financieros estaban fragmentados entre hojas de cálculo, sistemas heredados y controles manuales. El cliente necesitaba trazabilidad, auditoría y una operación unificada.',
-      en: 'Administrative and financial processes were fragmented across spreadsheets, legacy systems and manual controls. The client needed traceability, auditing and unified operations.',
+      es: 'Los procesos administrativos y financieros del sector público suelen estar fragmentados entre hojas de cálculo, sistemas heredados y controles manuales. La meta era construir una base auditable, modular y reutilizable por otras instituciones.',
+      en: 'Public-sector administrative and financial processes are often fragmented across spreadsheets, legacy systems and manual controls. The goal was to build an auditable, modular foundation that other institutions could reuse.',
     },
     solution: {
-      es: 'Arquitectura Laravel 12 + React 19 sobre PostgreSQL 16 y Redis 7, con Keycloak para identidad, API documentada con OpenAPI y despliegue en Docker. Implementación por módulos: núcleo y auditoría, catálogos, formulación y ejecución presupuestaria, SEP, compras, cuentas por pagar, tesorería, contabilidad, activos, inventario, producción, nómina y RRHH.',
-      en: 'Laravel 12 + React 19 architecture on PostgreSQL 16 and Redis 7, with Keycloak for identity, an OpenAPI-documented API and Docker deployment. Delivered by modules: core and audit, master data, budget formulation and execution, SEP, procurement, accounts payable, treasury, accounting, fixed assets, inventory, production, payroll and HR.',
+      es: 'Arquitectura Laravel 12 + React 19 sobre PostgreSQL 16 y Redis 7, con Keycloak para identidad, API documentada con OpenAPI y despliegue en Docker. Módulos: núcleo y auditoría, catálogos, formulación y ejecución presupuestaria, SEP, compras, cuentas por pagar, tesorería, contabilidad, activos, inventario, producción, nómina y RRHH. El proyecto se está preparando como software libre para construir comunidad.',
+      en: 'Laravel 12 + React 19 architecture on PostgreSQL 16 and Redis 7, with Keycloak for identity, an OpenAPI-documented API and Docker deployment. Modules: core and audit, master data, budget formulation and execution, SEP, procurement, accounts payable, treasury, accounting, fixed assets, inventory, production, payroll and HR. The project is being prepared as free software to build a community.',
     },
     results: {
       es: [
-        'Plataforma modular con 13 módulos administrativos y financieros.',
+        'Base modular con 13 módulos administrativos y financieros.',
         'Presupuesto, compras, CxP, tesorería, contabilidad, activos, inventario, nómina y RRHH integrados.',
-        'Auditoría, identidad centralizada y contrato de API documentado.',
+        'Arquitectura auditable y reutilizable, preparada para abrirse como software libre.',
       ],
       en: [
-        'Modular platform with 13 administrative and financial modules.',
+        'Modular foundation with 13 administrative and financial modules.',
         'Budget, procurement, AP, treasury, accounting, assets, inventory, payroll and HR integrated.',
-        'Auditing, centralized identity and a documented API contract.',
+        'Auditable, reusable architecture prepared to be released as free software.',
       ],
     },
     stack: [
@@ -288,6 +291,7 @@ export const cases: CaseStudy[] = [
       en: ['Laravel', 'React', 'PostgreSQL', 'ERP'],
     },
     highlight: { es: 'ERP + 13 módulos', en: 'ERP + 13 modules' },
+    status: { es: 'Open source (en preparación)', en: 'Open source (in progress)' },
   },
   {
     slug: 'cordami-offline',
@@ -296,13 +300,13 @@ export const cases: CaseStudy[] = [
       en: 'Offline-first agricultural registry with maps and digital cards',
     },
     company: {
-      es: 'Cliente institucional · Venezuela',
-      en: 'Institutional client · Venezuela',
+      es: 'CORDAMI · Venezuela',
+      en: 'CORDAMI · Venezuela',
     },
     period: { es: '2026 — Actualidad', en: '2026 — Present' },
     summary: {
-      es: 'PWA para censar y carnetizar productores agrícolas en zonas sin cobertura, con datos geoespaciales, sincronización offline y verificación pública por QR.',
-      en: 'PWA to register and issue digital cards for agricultural producers in areas without coverage, with geospatial data, offline sync and public QR verification.',
+      es: 'PWA en producción para censar y carnetizar productores agrícolas en zonas sin cobertura, con datos geoespaciales, sincronización offline y verificación pública por QR.',
+      en: 'Production PWA to register and issue digital cards for agricultural producers in areas without coverage, with geospatial data, offline sync and public QR verification.',
     },
     challenge: {
       es: 'El censo debía funcionar en campo, sin internet, capturando polígonos de predios, fotos, datos productivos y documentación. La información necesitaba sincronizarse sin duplicados al recuperar señal.',
@@ -347,12 +351,14 @@ export const cases: CaseStudy[] = [
       en: ['PWA', 'Offline-first', 'PostGIS', 'React'],
     },
     highlight: { es: 'Offline-first + PostGIS', en: 'Offline-first + PostGIS' },
+    status: { es: 'En producción', en: 'In production' },
+    link: 'https://cordami.fii.gob.ve/',
   },
   {
     slug: 'vacanfly-hospitality',
     title: {
-      es: 'Suite de hospitalidad para huéspedes y propietarios',
-      en: 'Hospitality suite for guests and property owners',
+      es: 'Check-in para Booking y Airbnb con OCR de documentos',
+      en: 'Booking and Airbnb check-in with document OCR',
     },
     company: {
       es: 'Cliente de hospitalidad · España',
@@ -360,27 +366,27 @@ export const cases: CaseStudy[] = [
     },
     period: { es: '2025 — Actualidad', en: '2025 — Present' },
     summary: {
-      es: 'Plataforma para digitalizar el check-in de huéspedes, el registro de viajeros y la operación de alojamientos turísticos, con acceso a cerraduras inteligentes y multiidioma.',
-      en: 'Platform to digitize guest check-in, traveler registration and vacation rental operations, with smart lock access and multiple languages.',
+      es: 'Plataforma para digitalizar el check-in de huéspedes de Booking y Airbnb, el registro de viajeros y la operación de alojamientos turísticos, con OCR de documentos venezolanos, cerraduras inteligentes y multiidioma.',
+      en: 'Platform to digitize Booking and Airbnb guest check-in, traveler registration and vacation rental operations, with Venezuelan document OCR, smart locks and multiple languages.',
     },
     challenge: {
-      es: 'El check-in requería registrar varios huéspedes por reserva, validar documentos internacionales, cumplir el registro policial de viajeros, firmar contratos y coordinar accesos al alojamiento.',
-      en: 'Check-in required registering multiple guests per booking, validating international documents, complying with traveler registration rules, signing contracts and coordinating property access.',
+      es: 'El check-in requería registrar varios huéspedes por reserva, validar documentos internacionales, leer documentos de identidad venezolanos, cumplir el registro policial de viajeros, firmar contratos y coordinar accesos al alojamiento.',
+      en: 'Check-in required registering multiple guests per booking, validating international documents, reading Venezuelan identity documents, complying with traveler registration rules, signing contracts and coordinating property access.',
     },
     solution: {
-      es: 'PWA React + TypeScript con API PHP/MySQL. Validaciones condicionales para DNI/NIE/pasaporte, firma digital y contratos PDF con mPDF, panel de huésped y propietario, control de cerraduras inteligentes, guía local e interfaz en ES/EN/CA/FR/DE/NL.',
-      en: 'React + TypeScript PWA with a PHP/MySQL API. Conditional DNI/NIE/passport validation, digital signatures and PDF contracts with mPDF, guest and owner dashboards, smart lock control, local guide and ES/EN/CA/FR/DE/NL interfaces.',
+      es: 'PWA React + TypeScript con API PHP/MySQL. Validaciones condicionales para DNI/NIE/pasaporte, OCR de documentos venezolanos con Gemini, firma digital y contratos PDF con mPDF, panel de huésped y propietario, control de cerraduras inteligentes, guía local e interfaz en ES/EN/CA/FR/DE/NL.',
+      en: 'React + TypeScript PWA with a PHP/MySQL API. Conditional DNI/NIE/passport validation, Venezuelan document OCR with Gemini, digital signatures and PDF contracts with mPDF, guest and owner dashboards, smart lock control, local guide and ES/EN/CA/FR/DE/NL interfaces.',
     },
     results: {
       es: [
-        'Check-in digital multi-huésped con validación documental y firma.',
-        'Contratos PDF y flujo alineado al registro de viajeros.',
-        'Control de cerraduras inteligentes, guía local y seis idiomas.',
+        'Check-in digital multi-huésped para reservas de Booking y Airbnb.',
+        'OCR de documentos de identidad venezolanos integrado en el registro.',
+        'Contratos PDF, registro de viajeros, cerraduras inteligentes y seis idiomas.',
       ],
       en: [
-        'Multi-guest digital check-in with document validation and signature.',
-        'PDF contracts and a traveler-registration-aligned flow.',
-        'Smart lock control, local guide and six languages.',
+        'Multi-guest digital check-in for Booking and Airbnb bookings.',
+        'Venezuelan identity document OCR integrated into registration.',
+        'PDF contracts, traveler registration, smart locks and six languages.',
       ],
     },
     stack: [
@@ -396,6 +402,8 @@ export const cases: CaseStudy[] = [
       'Apache',
       'mPDF',
       'PWA',
+      'OCR',
+      'Gemini API',
     ],
     role: {
       es: 'Desarrollo fullstack, API PHP, frontend React, generación de PDFs y control de acceso.',
@@ -405,7 +413,103 @@ export const cases: CaseStudy[] = [
       es: ['React', 'PHP', 'PWA', 'Hospitality'],
       en: ['React', 'PHP', 'PWA', 'Hospitality'],
     },
-    highlight: { es: 'PWA + Smart locks', en: 'PWA + Smart locks' },
+    highlight: { es: 'PWA + OCR', en: 'PWA + OCR' },
+  },
+  {
+    slug: 'wushutech-pro',
+    title: {
+      es: 'WushuTech Pro — competencias y evaluación con IA',
+      en: 'WushuTech Pro — competition and AI-assisted evaluation',
+    },
+    company: {
+      es: 'Federación Venezolana de Wushu',
+      en: 'Venezuelan Wushu Federation',
+    },
+    period: { es: '2025 — Actualidad', en: '2025 — Present' },
+    summary: {
+      es: 'Plataforma en producción para gestionar competencias, evaluar Taolu y Sanda y asistir a jueces con inteligencia artificial.',
+      en: 'Production platform to manage competitions, evaluate Taolu and Sanda, and assist judges with artificial intelligence.',
+    },
+    challenge: {
+      es: 'La federación necesitaba digitalizar la gestión de competencias y el registro de evaluaciones de Taolu y Sanda, con una experiencia simple para jueces y organización.',
+      en: 'The federation needed to digitize competition management and Taolu/Sanda evaluation records, with a simple experience for judges and organizers.',
+    },
+    solution: {
+      es: 'Aplicación React 19 + TypeScript + Vite con React Router y Gemini API. Cubre gestión de competencias, evaluación de Taolu y Sanda y asistencia con IA. Está desplegada en producción en fevewushu.com.',
+      en: 'React 19 + TypeScript + Vite application with React Router and the Gemini API. It covers competition management, Taolu and Sanda evaluation, and AI assistance. It is deployed in production at fevewushu.com.',
+    },
+    results: {
+      es: [
+        'En producción para la Federación Venezolana de Wushu.',
+        'Evaluación de Taolu y Sanda y gestión de competencias.',
+        'Asistencia con IA integrada en el flujo de evaluación.',
+      ],
+      en: [
+        'In production for the Venezuelan Wushu Federation.',
+        'Taolu and Sanda evaluation and competition management.',
+        'AI assistance integrated into the evaluation workflow.',
+      ],
+    },
+    stack: ['React 19', 'TypeScript', 'Vite', 'React Router', 'Gemini API', 'Lucide'],
+    role: {
+      es: 'Desarrollo fullstack, producto, integración de IA y despliegue.',
+      en: 'Fullstack development, product, AI integration and deployment.',
+    },
+    tags: {
+      es: ['React', 'IA', 'Deportes'],
+      en: ['React', 'AI', 'Sports'],
+    },
+    highlight: { es: 'Producción + IA', en: 'Production + AI' },
+    status: { es: 'En producción', en: 'In production' },
+    link: 'https://fevewushu.com/',
+  },
+  {
+    slug: 'quedate',
+    title: {
+      es: 'Quedate — plataforma de alojamiento temporal',
+      en: 'Quedate — short-term rental platform',
+    },
+    company: {
+      es: 'Quedate · Venezuela',
+      en: 'Quedate · Venezuela',
+    },
+    period: { es: '2025 — Actualidad', en: '2025 — Present' },
+    summary: {
+      es: 'Marketplace de alojamiento temporal para Venezuela: búsqueda, reservas, KYC, billetera digital, mensajería y paneles para huéspedes y anfitriones.',
+      en: 'Short-term rental marketplace for Venezuela: search, bookings, KYC, digital wallet, messaging and guest/host dashboards.',
+    },
+    challenge: {
+      es: 'Conectar huéspedes y anfitriones con confianza, verificación de identidad, pagos y gestión de reservas en un mercado local.',
+      en: 'Connect guests and hosts with trust, identity verification, payments and booking management in a local market.',
+    },
+    solution: {
+      es: 'Aplicación React 19 + TypeScript con backend PHP y servicios de IA. Incluye mapas, mensajería, KYC, billetera digital, recomendaciones con Gemini y visuales 3D. Está desplegada en producción en quedate.net.',
+      en: 'React 19 + TypeScript application with a PHP backend and AI services. It includes maps, messaging, KYC, a digital wallet, Gemini-powered recommendations and 3D visuals. It is deployed in production at quedate.net.',
+    },
+    results: {
+      es: [
+        'Plataforma en producción en quedate.net.',
+        'Reservas, KYC, billetera digital y mensajería integrados.',
+        'Recomendaciones asistidas por Gemini.',
+      ],
+      en: [
+        'Production platform at quedate.net.',
+        'Bookings, KYC, digital wallet and messaging integrated.',
+        'Gemini-powered recommendations.',
+      ],
+    },
+    stack: ['React 19', 'TypeScript', 'Vite', 'PHP', 'REST API', 'Gemini API', 'Three.js'],
+    role: {
+      es: 'Desarrollo fullstack, producto, integración de IA y despliegue.',
+      en: 'Fullstack development, product, AI integration and deployment.',
+    },
+    tags: {
+      es: ['React', 'Marketplace', 'KYC'],
+      en: ['React', 'Marketplace', 'KYC'],
+    },
+    highlight: { es: 'Reservas + KYC', en: 'Bookings + KYC' },
+    status: { es: 'En producción', en: 'In production' },
+    link: 'https://quedate.net',
   },
   {
     slug: 'saas-internacional',
@@ -544,7 +648,9 @@ export type LabProject = {
   stack: string[]
   tags: Localized<string[]>
   status: Localized<string>
+  statusTone: 'production' | 'development'
   highlight: Localized<string>
+  link?: string
 }
 
 export const labProjects: LabProject[] = [
@@ -563,6 +669,7 @@ export const labProjects: LabProject[] = [
       en: ['Fintech', 'AI', 'Risk'],
     },
     status: { es: 'En desarrollo', en: 'In development' },
+    statusTone: 'development',
     highlight: { es: 'Multiagente + ledger', en: 'Multi-agent + ledger' },
   },
   {
@@ -580,24 +687,44 @@ export const labProjects: LabProject[] = [
       en: ['AI', 'Marketplace', 'Geo'],
     },
     status: { es: 'En desarrollo', en: 'In development' },
+    statusTone: 'development',
     highlight: { es: 'IA + geo', en: 'AI + geo' },
   },
   {
     name: {
-      es: 'WushuTech Pro — gestión de competencias',
-      en: 'WushuTech Pro — competition management',
+      es: 'FlashLoans — arbitraje atómico',
+      en: 'FlashLoans — atomic arbitrage',
     },
     description: {
-      es: 'Plataforma para federaciones de wushu: gestión de competencias, evaluación de Taolu y Sanda y asistencia con IA. React 19, TypeScript, Vite, React Router y Gemini API.',
-      en: 'Platform for wushu federations: competition management, Taolu and Sanda evaluation, and AI assistance. React 19, TypeScript, Vite, React Router and the Gemini API.',
+      es: 'Bot de arbitraje atómico en Arbitrum con flash loans de Aave V3 y liquidez de Uniswap V3/Sushiswap. Python/Web3, Solidity, FastAPI, PostgreSQL y Redis, con observabilidad y dashboard.',
+      en: 'Atomic arbitrage bot on Arbitrum with Aave V3 flash loans and Uniswap V3/Sushiswap liquidity. Python/Web3, Solidity, FastAPI, PostgreSQL and Redis, with observability and a dashboard.',
     },
-    stack: ['React', 'TypeScript', 'Vite', 'React Router', 'Gemini API'],
+    stack: ['Python', 'Web3.py', 'Solidity', 'Aave V3', 'Uniswap V3', 'PostgreSQL', 'FastAPI', 'Redis'],
     tags: {
-      es: ['Deportes', 'IA', 'SaaS'],
-      en: ['Sports', 'AI', 'SaaS'],
+      es: ['DeFi', 'Arbitraje', 'Web3'],
+      en: ['DeFi', 'Arbitrage', 'Web3'],
     },
     status: { es: 'En desarrollo', en: 'In development' },
-    highlight: { es: 'Taolu + Sanda', en: 'Taolu + Sanda' },
+    statusTone: 'development',
+    highlight: { es: 'Flash loans + Arbitrum', en: 'Flash loans + Arbitrum' },
+  },
+  {
+    name: {
+      es: 'ID Scanner IA — OCR de documentos',
+      en: 'ID Scanner AI — document OCR',
+    },
+    description: {
+      es: 'OCR para extraer datos de documentos de identidad venezolanos con Gemini 2.5 Flash. Se usa en el check-in de huéspedes para reducir la captura manual y acelerar el registro.',
+      en: 'OCR to extract data from Venezuelan identity documents with Gemini 2.5 Flash. Used in guest check-in to reduce manual entry and speed up registration.',
+    },
+    stack: ['React', 'TypeScript', 'Vite', 'Gemini API', 'OCR'],
+    tags: {
+      es: ['OCR', 'IA', 'Check-in'],
+      en: ['OCR', 'AI', 'Check-in'],
+    },
+    status: { es: 'En producción', en: 'In production' },
+    statusTone: 'production',
+    highlight: { es: 'OCR + Gemini', en: 'OCR + Gemini' },
   },
 ]
 
@@ -782,6 +909,7 @@ export const footer = {
 export const casePage = {
   back: { es: 'Volver a casos', en: 'Back to work' },
   viewCase: { es: 'Ver caso', en: 'View case' },
+  viewLive: { es: 'Ver en vivo', en: 'View live' },
   challenge: { es: 'El reto', en: 'The challenge' },
   solution: { es: 'La solución', en: 'The solution' },
   results: { es: 'Resultados', en: 'Results' },

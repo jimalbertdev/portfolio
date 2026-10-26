@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { casePage, cases, pick, site } from '../content'
 import { useLanguage } from '../lib/useLanguage'
 import { Footer } from '../components/Footer'
-import { ArrowLeft, ArrowUpRight, Check } from '../components/Icons'
+import { ArrowLeft, ArrowUpRight, Check, ExternalLink } from '../components/Icons'
 import { Navbar } from '../components/Navbar'
 import { Reveal } from '../components/Reveal'
 import { SkipLink } from '../components/SkipLink'
@@ -70,6 +70,12 @@ export function CaseStudy() {
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <span className="chip">{pick(study.highlight, language)}</span>
+              {study.status ? (
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/20 bg-accent/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-accent-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                  {pick(study.status, language)}
+                </span>
+              ) : null}
               <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
                 {pick(study.company, language)}
               </span>
@@ -142,6 +148,20 @@ export function CaseStudy() {
                   </div>
                 </div>
               </Reveal>
+
+              {study.link ? (
+                <Reveal>
+                  <a
+                    href={study.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-secondary w-full"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    {pick(casePage.viewLive, language)}
+                  </a>
+                </Reveal>
+              ) : null}
 
               <Reveal>
                 <div className="rounded-2xl border border-amber-300/15 bg-amber-300/[0.04] p-6">

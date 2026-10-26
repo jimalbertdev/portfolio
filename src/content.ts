@@ -19,7 +19,7 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/jimalbertdev',
   github: 'https://github.com/jimalbertdev',
   cv: '/cv/Alberto-Jimenez-Fullstack-Senior.pdf',
-  domain: 'jimalbert.dev',
+  domain: 'jimalbertdev.github.io/portfolio',
 }
 
 export const nav = {
@@ -247,8 +247,8 @@ export const cases: CaseStudy[] = [
     },
     period: { es: '2026 — Actualidad', en: '2026 — Present' },
     summary: {
-      es: 'Software libre para centralizar presupuesto, compras, tesorería, contabilidad, inventario, nómina y recursos humanos en una sola arquitectura reutilizable.',
-      en: 'Free software centralizing budget, procurement, treasury, accounting, inventory, payroll and HR in a single reusable architecture.',
+      es: 'Software libre de 13 módulos para centralizar presupuesto, compras, tesorería, contabilidad, inventario, nómina y recursos humanos. Implementación en curso en CORDAMI.',
+      en: 'Free software with 13 modules centralizing budget, procurement, treasury, accounting, inventory, payroll and HR. Implementation underway at CORDAMI.',
     },
     challenge: {
       es: 'Los procesos administrativos y financieros del sector público suelen estar fragmentados entre hojas de cálculo, sistemas heredados y controles manuales. La meta era construir una base auditable, modular y reutilizable por otras instituciones.',
@@ -261,12 +261,12 @@ export const cases: CaseStudy[] = [
     results: {
       es: [
         'Base modular con 13 módulos administrativos y financieros.',
-        'Presupuesto, compras, CxP, tesorería, contabilidad, activos, inventario, nómina y RRHH integrados.',
+        'Implementación en curso en CORDAMI, con presupuesto, compras, CxP, tesorería, contabilidad, activos, inventario, nómina y RRHH.',
         'Arquitectura auditable y reutilizable, preparada para abrirse como software libre.',
       ],
       en: [
         'Modular foundation with 13 administrative and financial modules.',
-        'Budget, procurement, AP, treasury, accounting, assets, inventory, payroll and HR integrated.',
+        'Implementation underway at CORDAMI, covering budget, procurement, AP, treasury, accounting, assets, inventory, payroll and HR.',
         'Auditable, reusable architecture prepared to be released as free software.',
       ],
     },
@@ -305,8 +305,8 @@ export const cases: CaseStudy[] = [
     },
     period: { es: '2026 — Actualidad', en: '2026 — Present' },
     summary: {
-      es: 'PWA en producción para censar y carnetizar productores agrícolas en zonas sin cobertura, con datos geoespaciales, sincronización offline y verificación pública por QR.',
-      en: 'Production PWA to register and issue digital cards for agricultural producers in areas without coverage, with geospatial data, offline sync and public QR verification.',
+      es: 'PWA en producción con 4,000 productores registrados (18,000 estimados): censo offline, datos geoespaciales, carnetización y verificación pública por QR.',
+      en: 'Production PWA with 4,000 registered producers (18,000 estimated): offline census, geospatial data, digital cards and public QR verification.',
     },
     challenge: {
       es: 'El censo debía funcionar en campo, sin internet, capturando polígonos de predios, fotos, datos productivos y documentación. La información necesitaba sincronizarse sin duplicados al recuperar señal.',
@@ -318,14 +318,14 @@ export const cases: CaseStudy[] = [
     },
     results: {
       es: [
-        'Censo de 8 pasos con mapa satelital y polígono del predio.',
-        'Operación offline con sincronización automática e idempotencia.',
-        'Carnet digital con QR y verificación pública; exportación PDF/XLSX/CSV.',
+        '4,000 productores registrados a la fecha, con 18,000 estimados.',
+        'Censo de 8 pasos con mapa satelital, polígono del predio y operación offline.',
+        'Carnet digital con QR, verificación pública y exportación PDF/XLSX/CSV.',
       ],
       en: [
-        '8-step census with satellite map and farm polygon.',
-        'Offline operation with automatic, idempotent synchronization.',
-        'Digital card with QR and public verification; PDF/XLSX/CSV export.',
+        '4,000 producers registered to date, with 18,000 estimated.',
+        '8-step census with satellite map, farm polygon and offline operation.',
+        'Digital card with QR, public verification and PDF/XLSX/CSV export.',
       ],
     },
     stack: [
@@ -475,8 +475,8 @@ export const cases: CaseStudy[] = [
     },
     period: { es: '2025 — Actualidad', en: '2025 — Present' },
     summary: {
-      es: 'Marketplace de alojamiento temporal para Venezuela: búsqueda, reservas, KYC, billetera digital, mensajería y paneles para huéspedes y anfitriones.',
-      en: 'Short-term rental marketplace for Venezuela: search, bookings, KYC, digital wallet, messaging and guest/host dashboards.',
+      es: 'Marketplace de alojamiento temporal en producción: 5,000 reservas en lo que va de año, 120+ alojamientos y operación con holding en España.',
+      en: 'Production short-term rental marketplace: 5,000 bookings year-to-date, 120+ properties and operations with a holding company in Spain.',
     },
     challenge: {
       es: 'Conectar huéspedes y anfitriones con confianza, verificación de identidad, pagos y gestión de reservas en un mercado local.',
@@ -488,14 +488,14 @@ export const cases: CaseStudy[] = [
     },
     results: {
       es: [
-        'Plataforma en producción en quedate.net.',
-        'Reservas, KYC, billetera digital y mensajería integrados.',
-        'Recomendaciones asistidas por Gemini.',
+        '5,000 reservas en lo que va de año y 120+ alojamientos en producción.',
+        'Operación con holding en España y despliegue en quedate.net.',
+        'Reservas, KYC, billetera digital, mensajería y recomendaciones con Gemini.',
       ],
       en: [
-        'Production platform at quedate.net.',
-        'Bookings, KYC, digital wallet and messaging integrated.',
-        'Gemini-powered recommendations.',
+        '5,000 bookings year-to-date and 120+ properties in production.',
+        'Operations with a holding company in Spain and deployment at quedate.net.',
+        'Bookings, KYC, digital wallet, messaging and Gemini-powered recommendations.',
       ],
     },
     stack: ['React 19', 'TypeScript', 'Vite', 'PHP', 'REST API', 'Gemini API', 'Three.js'],

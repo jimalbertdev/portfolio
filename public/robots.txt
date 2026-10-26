@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jimalbert.dev/sitemap.xml
+Sitemap: https://jimalbertdev.github.io/portfolio/sitemap.xml

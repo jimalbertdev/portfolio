@@ -8,10 +8,12 @@ const CaseStudy = lazy(() =>
   import('./pages/CaseStudy').then((module) => ({ default: module.CaseStudy })),
 )
 
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
+
 export default function App() {
   return (
     <LanguageProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />

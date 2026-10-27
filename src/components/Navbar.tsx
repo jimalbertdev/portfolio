@@ -7,6 +7,7 @@ import { ArrowUpRight, Menu, X } from './Icons'
 const sectionLinks = [
   { to: '/#servicios', label: nav.services },
   { to: '/casos', label: nav.cases },
+  { to: '/herramientas', label: nav.tools },
   { to: '/#lab', label: nav.lab },
   { to: '/#sobre-mi', label: nav.about },
   { to: '/#contacto', label: nav.contact },
@@ -35,7 +36,7 @@ export function Navbar() {
         </Link>
 
         <nav
-          className="hidden items-center gap-1 md:flex"
+          className="hidden items-center gap-1 lg:flex"
           aria-label={language === 'es' ? 'Navegación principal' : 'Main navigation'}
         >
           {sectionLinks.map((link) => (
@@ -65,7 +66,7 @@ export function Navbar() {
           </Link>
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             type="button"
             onClick={toggleLanguage}
@@ -96,7 +97,7 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <div id="mobile-menu" className="border-t border-white/5 bg-ink-950/95 md:hidden">
+        <div id="mobile-menu" className="border-t border-white/5 bg-ink-950/95 lg:hidden">
           <nav
             className="container-page flex flex-col gap-1 py-4"
             aria-label={language === 'es' ? 'Navegación móvil' : 'Mobile navigation'}

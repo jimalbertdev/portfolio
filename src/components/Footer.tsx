@@ -8,6 +8,7 @@ const currentYear = new Date().getFullYear()
 const sectionLinks = [
   { to: '/#servicios', label: nav.services },
   { to: '/casos', label: nav.cases },
+  { to: '/herramientas', label: nav.tools },
   { to: '/#lab', label: nav.lab },
   { to: '/#sobre-mi', label: nav.about },
   { to: '/#contacto', label: nav.contact },

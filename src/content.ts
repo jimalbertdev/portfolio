@@ -13,6 +13,7 @@ const baseUrl = import.meta.env.BASE_URL
 
 export const site = {
   name: 'Alberto Jiménez',
+  role: 'Fullstack Senior',
   initials: 'AJ',
   phone: '+58 424-900-8410',
   phoneHref: 'tel:+584249008410',
@@ -21,11 +22,13 @@ export const site = {
   github: 'https://github.com/jimalbertdev',
   cv: `${baseUrl}cv/Alberto-Jimenez-Fullstack-Senior.pdf`,
   domain: 'jimalbertdev.github.io/portfolio',
+  portfolioUrl: 'https://jimalbertdev.github.io/portfolio',
 }
 
 export const nav = {
   services: { es: 'Servicios', en: 'Services' },
   cases: { es: 'Casos', en: 'Work' },
+  tools: { es: 'Herramientas', en: 'Tools' },
   lab: { es: 'Lab', en: 'Lab' },
   about: { es: 'Sobre mí', en: 'About' },
   contact: { es: 'Contacto', en: 'Contact' },
@@ -46,8 +49,8 @@ export const hero = {
     en: 'builds, ships and maintains.',
   },
   description: {
-    es: '8+ años construyendo SPAs con React y Vite, APIs en Python/PHP y bases de datos MySQL. También administro servidores Nginx/Apache y despliegues en producción. Un perfil fullstack + DevOps para equipos que necesitan resolver el ciclo completo.',
-    en: '8+ years building React and Vite SPAs, Python/PHP APIs and MySQL databases. I also manage Nginx/Apache servers and production deployments. A fullstack + DevOps profile for teams that need the entire lifecycle covered.',
+    es: '20+ años construyendo software, con foco actual en SPAs React/Vite, APIs Python/PHP y bases de datos MySQL. También administro servidores Nginx/Apache y despliegues en producción. Un perfil fullstack + DevOps para equipos que necesitan resolver el ciclo completo.',
+    en: '20+ years building software, currently focused on React/Vite SPAs, Python/PHP APIs and MySQL databases. I also manage Nginx/Apache servers and production deployments. A fullstack + DevOps profile for teams that need the entire lifecycle covered.',
   },
   primaryCta: { es: 'Hablemos', en: "Let's talk" },
   secondaryCta: { es: 'Ver casos', en: 'View work' },
@@ -57,7 +60,7 @@ export const hero = {
     facts: [
       {
         label: { es: 'Experiencia', en: 'Experience' },
-        value: { es: '8+ años', en: '8+ years' },
+        value: { es: '20+ años', en: '20+ years' },
       },
       {
         label: { es: 'Zona horaria', en: 'Timezone' },
@@ -140,7 +143,7 @@ export const homeSections = {
 
 export const stats = [
   {
-    value: { es: '8+', en: '8+' },
+    value: { es: '20+', en: '20+' },
     label: { es: 'años construyendo software', en: 'years building software' },
   },
   {
@@ -829,12 +832,12 @@ export const principles = [
 export const about = {
   paragraphs: {
     es: [
-      'Soy Alberto Jiménez, desarrollador fullstack senior con más de 8 años construyendo aplicaciones web y plataformas SaaS. Trabajo con React y Vite en el frontend, y Python/PHP con MySQL en el backend.',
+      'Soy Alberto Jiménez, desarrollador fullstack senior con más de 20 años de experiencia en desarrollo y TI. Trabajo con React y Vite en el frontend, y Python/PHP con MySQL en el backend.',
       'También administro servidores Nginx/Apache y despliegues. Esa combinación me permite resolver el ciclo completo: desde la interfaz hasta la infraestructura.',
       'He colaborado de forma remota con equipos y clientes en Canadá, España y Perú, incluyendo proyectos bajo NDA. Me enfoco en performance, estabilidad y código que el equipo pueda mantener.',
     ],
     en: [
-      'I am Alberto Jiménez, a senior fullstack developer with 8+ years building web applications and SaaS platforms. I work with React and Vite on the frontend, and Python/PHP with MySQL on the backend.',
+      'I am Alberto Jiménez, a senior fullstack developer with 20+ years of experience in software development and IT. I work with React and Vite on the frontend, and Python/PHP with MySQL on the backend.',
       'I also manage Nginx/Apache servers and deployments. That combination lets me cover the full lifecycle: from the interface to the infrastructure.',
       'I have worked remotely with teams and clients in Canada, Spain and Peru, including NDA-protected projects. I focus on performance, stability and code the team can maintain.',
     ],
@@ -910,6 +913,24 @@ export const footer = {
     en: 'Built with React, Vite and Tailwind.',
   },
   backToTop: { es: 'Volver arriba', en: 'Back to top' },
+}
+
+export const toolsPage = {
+  eyebrow: { es: 'Herramientas gratuitas', en: 'Free tools' },
+  title: { es: 'Audita tu web como un profesional', en: 'Audit your website like a pro' },
+  description: {
+    es: 'Tres herramientas gratuitas para medir rendimiento, buenas prácticas y Core Web Vitals. Sin registro. Los reportes llevan mi marca de agua y la opción de contratar la optimización.',
+    en: 'Three free tools to measure performance, best practices and Core Web Vitals. No signup. Reports carry my watermark and the option to hire optimization.',
+  },
+  note: {
+    es: 'Herramientas en español. Si quieres una auditoría completa, escríbeme por WhatsApp.',
+    en: 'Tools in Spanish. For a full audit, message me on WhatsApp.',
+  },
+  tabs: {
+    performance: { es: 'Escáner de rendimiento', en: 'Performance scanner' },
+    html: { es: 'Auditoría HTML', en: 'HTML audit' },
+    vitals: { es: 'Core Web Vitals', en: 'Core Web Vitals' },
+  },
 }
 
 export const casesPage = {

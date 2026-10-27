@@ -10,6 +10,8 @@ const CaseStudy = lazy(() =>
 
 const Cases = lazy(() => import('./pages/Cases').then((module) => ({ default: module.Cases })))
 
+const Tools = lazy(() => import('./pages/Tools').then((module) => ({ default: module.Tools })))
+
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
 
 export default function App() {
@@ -24,6 +26,14 @@ export default function App() {
             element={
               <Suspense fallback={<div className="min-h-screen bg-ink-950" />}>
                 <Cases />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/herramientas"
+            element={
+              <Suspense fallback={<div className="min-h-screen bg-ink-950" />}>
+                <Tools />
               </Suspense>
             }
           />

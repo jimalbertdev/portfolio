@@ -6,11 +6,11 @@ import { Github, Linkedin, Whatsapp } from './Icons'
 const currentYear = new Date().getFullYear()
 
 const sectionLinks = [
-  { id: 'servicios', label: nav.services },
-  { id: 'casos', label: nav.cases },
-  { id: 'lab', label: nav.lab },
-  { id: 'sobre-mi', label: nav.about },
-  { id: 'contacto', label: nav.contact },
+  { to: '/#servicios', label: nav.services },
+  { to: '/casos', label: nav.cases },
+  { to: '/#lab', label: nav.lab },
+  { to: '/#sobre-mi', label: nav.about },
+  { to: '/#contacto', label: nav.contact },
 ]
 
 export function Footer() {
@@ -44,8 +44,8 @@ export function Footer() {
             >
               {sectionLinks.map((link) => (
                 <Link
-                  key={link.id}
-                  to={`/#${link.id}`}
+                  key={link.to}
+                  to={link.to}
                   className="text-sm text-slate-400 transition hover:text-accent-300"
                 >
                   {pick(link.label, language)}

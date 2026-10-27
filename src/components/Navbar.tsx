@@ -5,11 +5,11 @@ import { useLanguage } from '../lib/useLanguage'
 import { ArrowUpRight, Menu, X } from './Icons'
 
 const sectionLinks = [
-  { id: 'servicios', label: nav.services },
-  { id: 'casos', label: nav.cases },
-  { id: 'lab', label: nav.lab },
-  { id: 'sobre-mi', label: nav.about },
-  { id: 'contacto', label: nav.contact },
+  { to: '/#servicios', label: nav.services },
+  { to: '/casos', label: nav.cases },
+  { to: '/#lab', label: nav.lab },
+  { to: '/#sobre-mi', label: nav.about },
+  { to: '/#contacto', label: nav.contact },
 ]
 
 export function Navbar() {
@@ -40,8 +40,8 @@ export function Navbar() {
         >
           {sectionLinks.map((link) => (
             <Link
-              key={link.id}
-              to={`/#${link.id}`}
+              key={link.to}
+              to={link.to}
               className="rounded-full px-3 py-2 text-sm text-slate-400 transition hover:bg-white/5 hover:text-white"
             >
               {pick(link.label, language)}
@@ -103,8 +103,8 @@ export function Navbar() {
           >
             {sectionLinks.map((link) => (
               <Link
-                key={link.id}
-                to={`/#${link.id}`}
+                key={link.to}
+                to={link.to}
                 onClick={() => setOpen(false)}
                 className="rounded-xl px-3 py-3 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white"
               >

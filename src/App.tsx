@@ -8,6 +8,8 @@ const CaseStudy = lazy(() =>
   import('./pages/CaseStudy').then((module) => ({ default: module.CaseStudy })),
 )
 
+const Cases = lazy(() => import('./pages/Cases').then((module) => ({ default: module.Cases })))
+
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
 
 export default function App() {
@@ -17,6 +19,14 @@ export default function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route
+            path="/casos"
+            element={
+              <Suspense fallback={<div className="min-h-screen bg-ink-950" />}>
+                <Cases />
+              </Suspense>
+            }
+          />
           <Route
             path="/casos/:slug"
             element={

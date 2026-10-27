@@ -95,6 +95,10 @@ export const homeSections = {
       es: 'Los nombres de clientes y el código están protegidos por NDA.',
       en: 'Client names and code are protected by NDA.',
     },
+    viewAll: {
+      es: 'Ver todos los casos',
+      en: 'View all case studies',
+    },
   },
   lab: {
     eyebrow: { es: 'Laboratorio', en: 'Lab' },
@@ -476,8 +480,8 @@ export const cases: CaseStudy[] = [
     },
     period: { es: '2025 — Actualidad', en: '2025 — Present' },
     summary: {
-      es: 'Marketplace de alojamiento temporal en producción: 5,000 reservas en lo que va de año, 120+ alojamientos y operación con holding en España.',
-      en: 'Production short-term rental marketplace: 5,000 bookings year-to-date, 120+ properties and operations with a holding company in Spain.',
+      es: 'Marketplace venezolano de alojamiento temporal en producción: 5,000 reservas en lo que va de año y 120+ alojamientos. Una alternativa local a Booking y Airbnb.',
+      en: 'Venezuelan short-term rental marketplace in production: 5,000 bookings year-to-date and 120+ properties. A local alternative to Booking and Airbnb.',
     },
     challenge: {
       es: 'Conectar huéspedes y anfitriones con confianza, verificación de identidad, pagos y gestión de reservas en un mercado local.',
@@ -490,12 +494,12 @@ export const cases: CaseStudy[] = [
     results: {
       es: [
         '5,000 reservas en lo que va de año y 120+ alojamientos en producción.',
-        'Operación con holding en España y despliegue en quedate.net.',
+        'Alternativa venezolana a Booking y Airbnb, desplegada en quedate.net.',
         'Reservas, KYC, billetera digital, mensajería y recomendaciones con Gemini.',
       ],
       en: [
         '5,000 bookings year-to-date and 120+ properties in production.',
-        'Operations with a holding company in Spain and deployment at quedate.net.',
+        'Venezuelan alternative to Booking and Airbnb, deployed at quedate.net.',
         'Bookings, KYC, digital wallet, messaging and Gemini-powered recommendations.',
       ],
     },
@@ -906,6 +910,16 @@ export const footer = {
     en: 'Built with React, Vite and Tailwind.',
   },
   backToTop: { es: 'Volver arriba', en: 'Back to top' },
+}
+
+export const casesPage = {
+  eyebrow: { es: 'Casos', en: 'Work' },
+  title: { es: 'Todos los casos', en: 'All case studies' },
+  description: {
+    es: 'Proyectos de producción, open source y trabajo previo. Los nombres de clientes y el código están protegidos por NDA cuando aplica.',
+    en: 'Production, open-source and previous work. Client names and code are protected by NDA where applicable.',
+  },
+  backHome: { es: 'Volver al inicio', en: 'Back home' },
 }
 
 export const casePage = {

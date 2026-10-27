@@ -63,7 +63,7 @@ export function CaseStudy() {
       <main id="contenido" className="pt-28 sm:pt-32">
         <div className="container-page">
           <Reveal>
-            <Link to="/#casos" className="btn-ghost">
+            <Link to="/casos" className="btn-ghost">
               <ArrowLeft className="h-4 w-4" />
               {pick(casePage.back, language)}
             </Link>

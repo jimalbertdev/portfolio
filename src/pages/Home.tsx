@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import {
   about,
   cases,
@@ -14,9 +15,11 @@ import {
   stackGroups,
   stats,
 } from '../content'
+import type { CaseStudy } from '../content'
 import { useLanguage } from '../lib/useLanguage'
 import { CaseCard } from '../components/CaseCard'
 import { ContactForm } from '../components/ContactForm'
+import { Counter } from '../components/Counter'
 import { Footer } from '../components/Footer'
 import {
   ArrowRight,
@@ -33,6 +36,38 @@ import { Navbar } from '../components/Navbar'
 import { Reveal } from '../components/Reveal'
 import { SectionHeading } from '../components/SectionHeading'
 import { SkipLink } from '../components/SkipLink'
+import { TypingCode, type CodeToken } from '../components/TypingCode'
+
+const featuredSlugs = ['cordami-offline', 'quedate', 'wushutech-pro']
+
+const featuredCases = featuredSlugs
+  .map((slug) => cases.find((study) => study.slug === slug))
+  .filter((study): study is CaseStudy => study !== undefined)
+
+const terminalTokens: CodeToken[] = [
+  { text: 'const ', className: 'text-fuchsia-300' },
+  { text: 'profile', className: 'text-sky-300' },
+  { text: ' = ', className: 'text-slate-500' },
+  { text: '{\n', className: 'text-slate-400' },
+  { text: '  role: ', className: 'text-slate-400' },
+  { text: "'Fullstack Senior'", className: 'text-accent-300' },
+  { text: ',\n  stack: [', className: 'text-slate-400' },
+  { text: "'React'", className: 'text-accent-300' },
+  { text: ', ', className: 'text-slate-500' },
+  { text: "'Python'", className: 'text-accent-300' },
+  { text: ', ', className: 'text-slate-500' },
+  { text: "'PHP'", className: 'text-accent-300' },
+  { text: '],\n  infra: [', className: 'text-slate-400' },
+  { text: "'Nginx'", className: 'text-accent-300' },
+  { text: ', ', className: 'text-slate-500' },
+  { text: "'Apache'", className: 'text-accent-300' },
+  { text: '],\n  remote: ', className: 'text-slate-400' },
+  { text: 'true', className: 'text-amber-300' },
+  { text: ',\n  timezone: ', className: 'text-slate-400' },
+  { text: "'UTC-4'", className: 'text-accent-300' },
+  { text: ',\n}\n\n', className: 'text-slate-400' },
+  { text: '// build, ship, maintain.', className: 'text-slate-600' },
+]
 
 export function Home() {
   const { language } = useLanguage()
@@ -75,10 +110,10 @@ export function Home() {
                   {pick(hero.primaryCta, language)}
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
-                <a href="#casos" className="btn-secondary">
+                <Link to="/casos" className="btn-secondary">
                   {pick(hero.secondaryCta, language)}
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
                 <a
                   href={site.cv}
                   target="_blank"
@@ -100,7 +135,7 @@ export function Home() {
             </Reveal>
 
             <Reveal className="relative mx-auto w-full max-w-md lg:max-w-none">
-              <div className="card relative overflow-hidden shadow-2xl shadow-black/50">
+              <div className="card relative overflow-hidden shadow-2xl shadow-black/50 transition duration-300 hover:border-accent/25">
                 <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
                   <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
@@ -109,50 +144,7 @@ export function Home() {
                 </div>
 
                 <div className="p-5 font-mono text-[12px] leading-6 sm:p-6 sm:text-[13px]">
-                  <p>
-                    <span className="text-fuchsia-300">const</span>{' '}
-                    <span className="text-sky-300">profile</span>{' '}
-                    <span className="text-slate-500">=</span> <span className="text-slate-400">{'{'}</span>
-                  </p>
-                  <p className="pl-5">
-                    <span className="text-slate-400">role:</span>{' '}
-                    <span className="text-accent-300">'Fullstack Senior'</span>
-                    <span className="text-slate-500">,</span>
-                  </p>
-                  <p className="pl-5">
-                    <span className="text-slate-400">stack:</span>{' '}
-                    <span className="text-slate-500">[</span>
-                    <span className="text-accent-300">'React'</span>
-                    <span className="text-slate-500">, </span>
-                    <span className="text-accent-300">'Python'</span>
-                    <span className="text-slate-500">, </span>
-                    <span className="text-accent-300">'PHP'</span>
-                    <span className="text-slate-500">]</span>
-                    <span className="text-slate-500">,</span>
-                  </p>
-                  <p className="pl-5">
-                    <span className="text-slate-400">infra:</span>{' '}
-                    <span className="text-slate-500">[</span>
-                    <span className="text-accent-300">'Nginx'</span>
-                    <span className="text-slate-500">, </span>
-                    <span className="text-accent-300">'Apache'</span>
-                    <span className="text-slate-500">]</span>
-                    <span className="text-slate-500">,</span>
-                  </p>
-                  <p className="pl-5">
-                    <span className="text-slate-400">remote:</span>{' '}
-                    <span className="text-amber-300">true</span>
-                    <span className="text-slate-500">,</span>
-                  </p>
-                  <p className="pl-5">
-                    <span className="text-slate-400">timezone:</span>{' '}
-                    <span className="text-accent-300">'UTC-4'</span>
-                    <span className="text-slate-500">,</span>
-                  </p>
-                  <p>
-                    <span className="text-slate-400">{'}'}</span>
-                  </p>
-                  <p className="mt-2 text-slate-600">// build, ship, maintain.</p>
+                  <TypingCode tokens={terminalTokens} />
                 </div>
 
                 <div className="grid grid-cols-2 gap-px border-t border-white/10 bg-white/5">
@@ -176,7 +168,7 @@ export function Home() {
               <Reveal key={pick(stat.label, language)}>
                 <div className="px-4 py-8 text-center sm:py-10">
                   <p className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                    {pick(stat.value, language)}
+                    <Counter value={pick(stat.value, language)} />
                   </p>
                   <p className="mt-2 text-xs leading-5 text-slate-500">{pick(stat.label, language)}</p>
                 </div>
@@ -241,11 +233,18 @@ export function Home() {
             </Reveal>
 
             <div className="mt-12 grid gap-4 lg:grid-cols-3">
-              {cases.map((study, index) => (
+              {featuredCases.map((study, index) => (
                 <Reveal key={study.slug} className="h-full">
                   <CaseCard study={study} index={index} />
                 </Reveal>
               ))}
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <Link to="/casos" className="btn-secondary">
+                {pick(homeSections.cases.viewAll, language)}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         </section>

@@ -79,7 +79,7 @@
   }
 
   .chip {
-    @apply rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-mono text-[11px] text-slate-300;
+    @apply rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 font-mono text-[11px] text-slate-300 transition hover:border-accent/30 hover:text-white;
   }
 
   .field {
@@ -93,6 +93,27 @@
     background-size: 72px 72px;
     mask-image: linear-gradient(to bottom, black, transparent 88%);
   }
+}
+
+@keyframes cursor-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.05em;
+  margin-left: 0.15ch;
+  vertical-align: -0.15em;
+  background: #34d399;
+  animation: cursor-blink 1s steps(1) infinite;
 }
 
 @keyframes pulse-dot {
@@ -118,5 +139,10 @@
 
   .animate-pulse-dot {
     animation: none;
+  }
+
+  .typing-cursor {
+    animation: none;
+    opacity: 0.6;
   }
 }

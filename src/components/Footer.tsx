@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { footer, nav, pick, site } from '../content'
 import { useLanguage } from '../lib/useLanguage'
-import { Github, Linkedin, Mail, Whatsapp } from './Icons'
+import { Github, Linkedin, Whatsapp } from './Icons'
 
 const currentYear = new Date().getFullYear()
 
@@ -59,13 +59,6 @@ export function Footer() {
               {language === 'es' ? 'Contacto' : 'Contact'}
             </p>
             <div className="mt-4 flex flex-col gap-3">
-              <a
-                href={`mailto:${site.email}`}
-                className="inline-flex items-center gap-2 text-sm text-slate-400 transition hover:text-accent-300"
-              >
-                <Mail className="h-4 w-4" />
-                {site.email}
-              </a>
               <a
                 href={site.whatsapp}
                 target="_blank"

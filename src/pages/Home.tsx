@@ -25,7 +25,6 @@ import {
   Download,
   Github,
   Linkedin,
-  Mail,
   ServiceGlyph,
   Sparkles,
   Whatsapp,
@@ -398,9 +397,14 @@ export function Home() {
                   <Download className="h-4 w-4" />
                   {language === 'es' ? 'Descargar CV' : 'Download CV'}
                 </a>
-                <a href={`mailto:${site.email}`} className="btn-ghost px-2 py-2">
-                  <Mail className="h-4 w-4" />
-                  {site.email}
+                <a
+                  href={site.whatsapp}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-ghost px-2 py-2"
+                >
+                  <Whatsapp className="h-4 w-4" />
+                  {site.phone}
                 </a>
               </div>
             </Reveal>
@@ -472,21 +476,6 @@ export function Home() {
 
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 <a
-                  href={`mailto:${site.email}`}
-                  className="card group flex items-center gap-3 p-4 transition hover:border-accent/30 hover:bg-white/[0.05]"
-                >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition group-hover:text-accent-300">
-                    <Mail className="h-4 w-4" />
-                  </span>
-                  <span>
-                    <span className="block text-[10px] uppercase tracking-[0.14em] text-slate-500">
-                      {pick(contact.emailLabel, language)}
-                    </span>
-                    <span className="mt-0.5 block text-sm text-slate-200">{site.email}</span>
-                  </span>
-                </a>
-
-                <a
                   href={site.whatsapp}
                   target="_blank"
                   rel="noreferrer"
@@ -500,6 +489,25 @@ export function Home() {
                       {pick(contact.whatsappLabel, language)}
                     </span>
                     <span className="mt-0.5 block text-sm text-slate-200">{site.phone}</span>
+                  </span>
+                </a>
+
+                <a
+                  href={site.cv}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="card group flex items-center gap-3 p-4 transition hover:border-accent/30 hover:bg-white/[0.05]"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 transition group-hover:text-accent-300">
+                    <Download className="h-4 w-4" />
+                  </span>
+                  <span>
+                    <span className="block text-[10px] uppercase tracking-[0.14em] text-slate-500">
+                      {pick(contact.cvLabel, language)}
+                    </span>
+                    <span className="mt-0.5 block text-sm text-slate-200">
+                      {pick(contact.cvValue, language)}
+                    </span>
                   </span>
                 </a>
 

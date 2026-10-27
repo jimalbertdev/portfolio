@@ -14,7 +14,6 @@ const baseUrl = import.meta.env.BASE_URL
 export const site = {
   name: 'Alberto Jiménez',
   initials: 'AJ',
-  email: 'jim.alberto@gmail.com',
   phone: '+58 424-900-8410',
   phoneHref: 'tel:+584249008410',
   whatsapp: 'https://wa.me/584249008410',
@@ -863,11 +862,12 @@ export const contact = {
   eyebrow: { es: 'Contacto', en: 'Contact' },
   title: { es: '¿Construimos algo que funcione?', en: 'Shall we build something that works?' },
   description: {
-    es: 'Cuéntame qué necesitas: un rol full-time, un proyecto freelance o una auditoría técnica. Respondo en menos de 24 horas.',
-    en: 'Tell me what you need: a full-time role, a freelance project or a technical audit. I reply within 24 hours.',
+    es: 'Cuéntame por WhatsApp qué necesitas: un rol full-time, un proyecto freelance o una auditoría técnica. Respondo en menos de 24 horas.',
+    en: 'Tell me on WhatsApp what you need: a full-time role, a freelance project or a technical audit. I reply within 24 hours.',
   },
-  emailLabel: { es: 'Email', en: 'Email' },
   whatsappLabel: { es: 'WhatsApp', en: 'WhatsApp' },
+  cvLabel: { es: 'Currículum', en: 'Résumé' },
+  cvValue: { es: 'Descargar PDF', en: 'Download PDF' },
   linkedinLabel: { es: 'LinkedIn', en: 'LinkedIn' },
   form: {
     name: { es: 'Nombre', en: 'Name' },
@@ -879,18 +879,18 @@ export const contact = {
       es: 'Cuéntame sobre el rol o proyecto...',
       en: 'Tell me about the role or project...',
     },
-    submit: { es: 'Enviar mensaje', en: 'Send message' },
+    submit: { es: 'Enviar por WhatsApp', en: 'Send via WhatsApp' },
     success: {
-      es: 'Se abrirá tu cliente de correo con el mensaje listo para enviar.',
-      en: 'Your email client will open with the message ready to send.',
+      es: 'Se abrirá WhatsApp con el mensaje listo para enviar.',
+      en: 'WhatsApp will open with the message ready to send.',
     },
     invalid: {
       es: 'Revisa los campos e inténtalo de nuevo.',
       en: 'Please check the fields and try again.',
     },
     note: {
-      es: 'Este formulario abre tu cliente de correo. No se almacena nada en el sitio.',
-      en: 'This form opens your email client. Nothing is stored on the site.',
+      es: 'Este formulario abre WhatsApp con el mensaje listo para enviar. No se almacena nada en el sitio.',
+      en: 'This form opens WhatsApp with the message ready to send. Nothing is stored on the site.',
     },
   },
 }
@@ -935,5 +935,3 @@ export const casePage = {
   },
   notFoundButton: { es: 'Volver al inicio', en: 'Back to home' },
 }
-
-export const contactEmail = site.email

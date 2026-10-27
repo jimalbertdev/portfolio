@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { contact, pick, site } from '../content'
 import { useLanguage } from '../lib/useLanguage'
-import { ArrowUpRight } from './Icons'
+import { Whatsapp } from './Icons'
 
 type FormStatus = 'idle' | 'success' | 'invalid'
 
@@ -25,14 +25,12 @@ export function ContactForm() {
       return
     }
 
-    const subject =
+    const text =
       language === 'es'
-        ? `Contacto desde el portafolio — ${cleanName}`
-        : `Portfolio contact — ${cleanName}`
-    const body = `${cleanMessage}\n\n${cleanName}\n${cleanEmail}`
-    const mailto = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+        ? `Hola Alberto, soy ${cleanName}.\n\n${cleanMessage}\n\nMi email: ${cleanEmail}`
+        : `Hi Alberto, I'm ${cleanName}.\n\n${cleanMessage}\n\nMy email: ${cleanEmail}`
 
-    window.location.assign(mailto)
+    window.location.assign(`${site.whatsapp}?text=${encodeURIComponent(text)}`)
     setStatus('success')
   }
 
@@ -95,7 +93,7 @@ export function ContactForm() {
         </p>
         <button type="submit" className="btn-primary shrink-0">
           {pick(contact.form.submit, language)}
-          <ArrowUpRight className="h-4 w-4" />
+          <Whatsapp className="h-4 w-4" />
         </button>
       </div>
 

@@ -39,11 +39,22 @@ type MicrolinkPayload = {
   }
 }
 
+type PageSpeedPayload = {
+  lighthouseResult?: LighthouseData
+  error?: {
+    code?: number
+    message?: string
+  }
+}
+
+type ScanProvider = 'PageSpeed' | 'Microlink'
+
 type ScanReport = {
   url: string
   title: string
   description: string
   date: string
+  provider: ScanProvider
   scores: { label: string; value: number }[]
   metrics: ReportMetric[]
   opportunities: { title: string; detail: string }[]
@@ -95,6 +106,12 @@ const statusForScore = (score?: number | null): ReportStatus => {
 
 const cachePrefix = 'aj:tool:scan:'
 
+const pagespeedKey = (
+  import.meta.env.VITE_PAGESPEED_API_KEY as string | undefined
+)?.trim()
+
+const scanProvider: ScanProvider = pagespeedKey ? 'PageSpeed' : 'Microlink'
+
 function normalizeUrl(input: string): string {
   const trimmed = input.trim()
   const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`
@@ -107,14 +124,18 @@ function normalizeUrl(input: string): string {
   return parsed.toString()
 }
 
-function readCache(url: string): ScanReport | null {
+function cacheKey(provider: ScanProvider, url: string): string {
+  return `${cachePrefix}${provider}:${url}`
+}
+
+function readCache(provider: ScanProvider, url: string): ScanReport | null {
   try {
-    const raw = window.localStorage.getItem(`${cachePrefix}${url}`)
+    const raw = window.localStorage.getItem(cacheKey(provider, url))
     if (!raw) return null
 
     const cached = JSON.parse(raw) as { timestamp: number; report: ScanReport }
     if (Date.now() - cached.timestamp > 24 * 60 * 60 * 1000) {
-      window.localStorage.removeItem(`${cachePrefix}${url}`)
+      window.localStorage.removeItem(cacheKey(provider, url))
       return null
     }
 
@@ -124,10 +145,10 @@ function readCache(url: string): ScanReport | null {
   }
 }
 
-function writeCache(url: string, report: ScanReport): void {
+function writeCache(provider: ScanProvider, url: string, report: ScanReport): void {
   try {
     window.localStorage.setItem(
-      `${cachePrefix}${url}`,
+      cacheKey(provider, url),
       JSON.stringify({ timestamp: Date.now(), report }),
     )
   } catch {
@@ -135,10 +156,23 @@ function writeCache(url: string, report: ScanReport): void {
   }
 }
 
-function buildReport(url: string, payload: MicrolinkPayload, remaining: string | null): ScanReport {
-  const lighthouse = payload.data?.insights?.lighthouse
-  const categories = lighthouse?.categories ?? {}
-  const audits = lighthouse?.audits ?? {}
+function buildReport({
+  url,
+  title,
+  description,
+  lighthouse,
+  provider,
+  remaining,
+}: {
+  url: string
+  title: string
+  description: string
+  lighthouse: LighthouseData
+  provider: ScanProvider
+  remaining: string | null
+}): ScanReport {
+  const categories = lighthouse.categories ?? {}
+  const audits = lighthouse.audits ?? {}
 
   const scores = Object.entries(categoryLabels)
     .map(([key, label]) => ({
@@ -183,9 +217,10 @@ function buildReport(url: string, payload: MicrolinkPayload, remaining: string |
 
   return {
     url,
-    title: payload.data?.title || url,
-    description: payload.data?.description || '',
+    title: title || url,
+    description,
     date: formatDate(),
+    provider,
     scores,
     metrics,
     opportunities,
@@ -213,7 +248,7 @@ export function PerformanceScanner() {
       return
     }
 
-    const cached = readCache(normalized)
+    const cached = readCache(scanProvider, normalized)
     if (cached) {
       setReport(cached)
       setStatus('success')
@@ -227,30 +262,71 @@ export function PerformanceScanner() {
     const timeout = window.setTimeout(() => controller.abort(), 60000)
 
     try {
-      const response = await fetch(
-        `https://api.microlink.io/?url=${encodeURIComponent(normalized)}&insights=true&meta=true`,
-        {
-          headers: { Accept: 'application/json' },
-          signal: controller.signal,
-        },
-      )
-      const payload = (await response.json()) as MicrolinkPayload
+      let nextReport: ScanReport
 
-      if (!response.ok || payload.status !== 'success' || !payload.data?.insights?.lighthouse) {
-        throw new Error(payload.message || 'No se pudo completar el escaneo.')
+      if (pagespeedKey) {
+        const params = new URLSearchParams({
+          url: normalized,
+          strategy: 'mobile',
+          key: pagespeedKey,
+        })
+
+        for (const category of ['performance', 'accessibility', 'best-practices', 'seo']) {
+          params.append('category', category)
+        }
+
+        const response = await fetch(
+          `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?${params.toString()}`,
+          {
+            headers: { Accept: 'application/json' },
+            signal: controller.signal,
+          },
+        )
+        const payload = (await response.json()) as PageSpeedPayload
+
+        if (!response.ok || payload.error || !payload.lighthouseResult) {
+          throw new Error(
+            payload.error?.message || 'PageSpeed no pudo completar el escaneo.',
+          )
+        }
+
+        nextReport = buildReport({
+          url: normalized,
+          title: new URL(normalized).hostname,
+          description: '',
+          lighthouse: payload.lighthouseResult,
+          provider: 'PageSpeed',
+          remaining: null,
+        })
+      } else {
+        const response = await fetch(
+          `https://api.microlink.io/?url=${encodeURIComponent(normalized)}&insights=true&meta=true`,
+          {
+            headers: { Accept: 'application/json' },
+            signal: controller.signal,
+          },
+        )
+        const payload = (await response.json()) as MicrolinkPayload
+
+        if (!response.ok || payload.status !== 'success' || !payload.data?.insights?.lighthouse) {
+          throw new Error(payload.message || 'No se pudo completar el escaneo.')
+        }
+
+        nextReport = buildReport({
+          url: normalized,
+          title: payload.data.title || normalized,
+          description: payload.data.description || '',
+          lighthouse: payload.data.insights.lighthouse,
+          provider: 'Microlink',
+          remaining: response.headers.get('x-rate-limit-remaining'),
+        })
       }
-
-      const nextReport = buildReport(
-        normalized,
-        payload,
-        response.headers.get('x-rate-limit-remaining'),
-      )
 
       if (nextReport.scores.length === 0) {
         throw new Error('La API no devolvió puntajes para este sitio.')
       }
 
-      writeCache(normalized, nextReport)
+      writeCache(scanProvider, normalized, nextReport)
       setReport(nextReport)
       setStatus('success')
     } catch (scanError) {
@@ -258,8 +334,13 @@ export function PerformanceScanner() {
         scanError instanceof Error && scanError.name === 'AbortError'
           ? 'El escaneo tardó demasiado. Inténtalo de nuevo o escríbeme por WhatsApp.'
           : scanError instanceof Error && /429|quota|limit/i.test(scanError.message)
-            ? 'El escáner gratuito alcanzó su límite diario. Escríbeme para una auditoría completa.'
-            : 'No se pudo analizar el sitio. Revisa la URL o inténtalo más tarde.'
+            ? 'El escáner alcanzó su límite diario. Escríbeme para una auditoría completa.'
+            : scanError instanceof Error &&
+                /api key|key not valid|permission|forbidden|referer|blocked/i.test(
+                  scanError.message,
+                )
+              ? 'La API key de PageSpeed no es válida o no permite este dominio. Revisa la restricción por referrer.'
+              : 'No se pudo analizar el sitio. Revisa la URL o inténtalo más tarde.'
 
       setError(message)
       setStatus('error')
@@ -279,7 +360,7 @@ export function PerformanceScanner() {
       scores: report.scores,
       metrics: report.metrics,
       opportunities: report.opportunities,
-      note: 'Análisis Lighthouse vía Microlink. Los resultados pueden variar según red y dispositivo.',
+      note: `Análisis Lighthouse vía ${report.provider}. Los resultados pueden variar según red y dispositivo.`,
     })
   }
 
@@ -320,8 +401,9 @@ export function PerformanceScanner() {
             </button>
           </div>
           <p className="mt-3 text-[11px] leading-5 text-slate-500">
-            Escaneo gratuito con Lighthouse vía Microlink. Límite diario compartido. Para una
-            auditoría completa y sin límites, contáctame.
+            {scanProvider === 'PageSpeed'
+              ? 'Escaneo gratuito con Google PageSpeed Insights. Cuota diaria alta y reporte con marca de agua.'
+              : 'Escaneo gratuito con Lighthouse vía Microlink. Límite diario compartido. Para una auditoría completa, contáctame.'}
           </p>
         </form>
       </div>
@@ -358,7 +440,7 @@ export function PerformanceScanner() {
           tool="Escáner de rendimiento"
           title={report.title}
           url={report.url}
-          subtitle={`Lighthouse móvil · ${report.date}${report.cached ? ' · resultado en caché' : ''}`}
+          subtitle={`Lighthouse móvil · ${report.provider} · ${report.date}${report.cached ? ' · resultado en caché' : ''}`}
           onPrint={handlePrint}
         >
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">

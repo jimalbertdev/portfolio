@@ -35,6 +35,8 @@ jobs:
 
       - name: Build for GitHub Pages
         run: npm run build:pages
+        env:
+          VITE_PAGESPEED_API_KEY: ${{ secrets.VITE_PAGESPEED_API_KEY }}
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

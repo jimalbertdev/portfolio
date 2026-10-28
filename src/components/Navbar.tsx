@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { nav, pick, site } from '../content'
 import { useLanguage } from '../lib/useLanguage'
-import { ArrowUpRight, Menu, X } from './Icons'
+import { useTheme } from '../lib/useTheme'
+import { ArrowUpRight, Menu, Moon, Sun, X } from './Icons'
 
 const sectionLinks = [
   { to: '/#servicios', label: nav.services },
@@ -15,7 +16,17 @@ const sectionLinks = [
 
 export function Navbar() {
   const { language, toggleLanguage } = useLanguage()
+  const { theme, toggleTheme } = useTheme()
   const [open, setOpen] = useState(false)
+
+  const themeLabel =
+    theme === 'dark'
+      ? language === 'es'
+        ? 'Cambiar a tema claro'
+        : 'Switch to light theme'
+      : language === 'es'
+        ? 'Cambiar a tema oscuro'
+        : 'Switch to dark theme'
 
   return (
     <header
@@ -53,6 +64,16 @@ export function Navbar() {
 
           <button
             type="button"
+            onClick={toggleTheme}
+            className="rounded-full border border-white/10 p-2 text-slate-300 transition hover:border-accent/40 hover:text-accent-300"
+            aria-label={themeLabel}
+            title={themeLabel}
+          >
+            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+
+          <button
+            type="button"
             onClick={toggleLanguage}
             className="rounded-full border border-white/10 px-3 py-1.5 font-mono text-[11px] font-medium text-slate-300 transition hover:border-accent/40 hover:text-accent-300"
             aria-label={language === 'es' ? 'EN — Cambiar a inglés' : 'ES — Switch to Spanish'}
@@ -67,6 +88,15 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2 lg:hidden">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="rounded-full border border-white/10 p-2 text-slate-300 transition hover:border-accent/40 hover:text-accent-300"
+            aria-label={themeLabel}
+            title={themeLabel}
+          >
+            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
           <button
             type="button"
             onClick={toggleLanguage}

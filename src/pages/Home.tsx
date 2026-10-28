@@ -96,7 +96,7 @@ export function Home() {
 
               <h1 className="mt-6 max-w-3xl text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
                 {pick(hero.title, language)}{' '}
-                <span className="bg-gradient-to-r from-accent-300 via-emerald-200 to-sky-300 bg-clip-text text-transparent">
+                <span className="hero-gradient bg-gradient-to-r from-accent-300 via-emerald-200 to-sky-300 bg-clip-text text-transparent">
                   {pick(hero.titleAccent, language)}
                 </span>
               </h1>
@@ -135,7 +135,7 @@ export function Home() {
             </Reveal>
 
             <Reveal className="relative mx-auto w-full max-w-md lg:max-w-none">
-              <div className="card relative overflow-hidden shadow-2xl shadow-black/50 transition duration-300 hover:border-accent/25">
+              <div className="terminal-card card relative overflow-hidden shadow-2xl shadow-black/50 transition duration-300 hover:border-accent/25">
                 <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
                   <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
                   <span className="h-2.5 w-2.5 rounded-full bg-amber-300/70" />

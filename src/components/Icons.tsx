@@ -125,6 +125,23 @@ export function Sparkles(props: IconProps) {
   )
 }
 
+export function Sun(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+    </svg>
+  )
+}
+
+export function Moon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" {...strokeProps} {...props}>
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+    </svg>
+  )
+}
+
 export function Menu(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" {...strokeProps} {...props}>

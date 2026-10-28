@@ -147,8 +147,8 @@ export const stats = [
     label: { es: 'años construyendo software', en: 'years building software' },
   },
   {
-    value: { es: '3', en: '3' },
-    label: { es: 'países con clientes remotos', en: 'countries with remote clients' },
+    value: { es: '6', en: '6' },
+    label: { es: 'países con clientes y equipos', en: 'countries with clients and teams' },
   },
   {
     value: { es: 'Fullstack', en: 'Fullstack' },
@@ -834,12 +834,12 @@ export const about = {
     es: [
       'Soy Alberto Jiménez, desarrollador fullstack senior con más de 20 años de experiencia en desarrollo y TI. Trabajo con React y Vite en el frontend, y Python/PHP con MySQL en el backend.',
       'También administro servidores Nginx/Apache y despliegues. Esa combinación me permite resolver el ciclo completo: desde la interfaz hasta la infraestructura.',
-      'He colaborado de forma remota con equipos y clientes en Canadá, España y Perú, incluyendo proyectos bajo NDA. Me enfoco en performance, estabilidad y código que el equipo pueda mantener.',
+      'He colaborado de forma remota con equipos y clientes en Colombia, Perú, EE.UU., Canadá, España y Venezuela, incluyendo proyectos bajo NDA. Me enfoco en performance, estabilidad y código que el equipo pueda mantener.',
     ],
     en: [
       'I am Alberto Jiménez, a senior fullstack developer with 20+ years of experience in software development and IT. I work with React and Vite on the frontend, and Python/PHP with MySQL on the backend.',
       'I also manage Nginx/Apache servers and deployments. That combination lets me cover the full lifecycle: from the interface to the infrastructure.',
-      'I have worked remotely with teams and clients in Canada, Spain and Peru, including NDA-protected projects. I focus on performance, stability and code the team can maintain.',
+      'I have worked remotely with teams and clients in Colombia, Peru, the US, Canada, Spain and Venezuela, including NDA-protected projects. I focus on performance, stability and code the team can maintain.',
     ],
   },
   facts: [
